@@ -9,13 +9,13 @@ class Point_Counter:
     def __init__ (self, file_path):
         with open(file_path) as f:
             for line in f:
-                items = line.strip().split(':')
+                items = line.strip().split(":")
                 data[items[0]] = int(items[1])
 
     def __str__ (self):
-        string = ''
+        string = ""
         for key in data.keys():
-            string.append('{}:{}'.format(key, data[key]))
+            string.append("{}:{}".format(key, data[key]))
         return string
 
     def update(self, name, val):
@@ -27,6 +27,24 @@ class Point_Counter:
         with open(FILE_NAME, "w") as f:
             for name in data.keys():
                 f.write("{}:{}\n".format(name, str(data[name])))
+
+    def handle (self, msg):
+        contents = msg.strip.split(" ")[1:]
+        response = ""
+        if len(contents) == 1:
+            # printing the score or help
+            pass
+        elif len(contents) == 2:
+            # either leaderboard or user score
+            pass
+        elif len(contnets) == 3:
+            # update user score
+            pass
+        else:
+            # error
+            response = "Uhhh,,, I don't think your message was formatted correctly?" + \
+                    "\nMaybe try `!p h` for some help."
+        return response
 
 def main():
     c = Point_Counter(FILE_NAME)
