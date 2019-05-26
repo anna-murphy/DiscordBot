@@ -37,11 +37,14 @@ class Point_Counter:
                 + "```"
 
     def handle (self, msg):
-        contents = msg.strip.split(" ")[1:]
+        contents = msg.strip.split(" ")
         response = ""
         if len(contents) == 1:
             # printing the score
-            pass
+            response.append("Here's the points:\n```")
+            for u in self.point_data.keys():
+                response.append("{}: {}\n".format(u, self.point_data[u]))
+            response.append("```")
         elif len(contents) == 2:
             # either leaderboard, user score, or help
             if contents[1] == "h":
@@ -60,13 +63,32 @@ class Point_Counter:
                         break
             elif contents[1] in self.point_data.keys():
                 # user score
-                response = "{} has {} points".format(contents[1], self.point_data[contents[1]])
+                response = "{} has {} points".format( \
+                        contents[1], self.point_data[contents[1]])
             else:
                 # error?
                 response = "The formatting of that doesn't feel quite right... try asking for help?"
         elif len(contnets) == 3:
             # update user score
-            pass
+            if contents[1] in self.point_data.keys():
+                # update points
+                val = 0
+                try:
+                    val = int(contents[2])
+                except:
+                    response = "I didn't get that number... Maybe try again?"
+                self.update(contents[1], contents[2])
+                response = "{} now has {} points!".format( \
+                        contents[1], self.points_data[contents[1]])
+            elif contents[1] == "r":
+                # remove user
+                if contents[2] in self.points_data.keys():
+                    pass
+                else:
+                    response = "It looks like that user wasn't being recorded. Try again?";
+            else:
+                # error
+                response = "The formatting of that doesn't feel quite right... try asking for help?"
         else:
             # error
             response = "Uhhh,,, I don't think your message was formatted correctly?" + \
