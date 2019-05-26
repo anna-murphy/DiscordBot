@@ -37,22 +37,22 @@ class Point_Counter:
                 + "```"
 
     def handle (self, msg):
-        contents = msg.strip.split(" ")
+        contents = msg.strip().split(" ")
         response = ""
         if len(contents) == 1:
             # printing the score
             print("\tSending Total Scores...")
-            response.append("Here's the points:\n```")
+            response += "Here's the points:\n```"
             for u in self.point_data.keys():
-                response.append("{}: {}\n".format(u, self.point_data[u]))
-            response.append("```")
+                response += "{}: {}\n".format(u, self.point_data[u])
+            response += "```"
         elif len(contents) == 2:
             # either leaderboard, user score, or help
             if contents[1] == "h":
                 print("\tSending Help")
                 #help message
                 response = self.help();
-            elif contens[1] == "l":
+            elif contents[1] == "l":
                 # leader board
                 print("\tSending Leaderboard")
                 leaders = []
@@ -60,7 +60,7 @@ class Point_Counter:
                 for i in sorted (self.point_data):
                     leaders.append(i)
                 for u in leaders:
-                    response.append("{}. {}\n".format(counter, u))
+                    response += "{}. {}\n".format(counter, u)
                     counter += 1
                     if counter == 4:
                         break
