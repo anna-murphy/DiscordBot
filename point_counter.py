@@ -41,6 +41,7 @@ class Point_Counter:
         response = ""
         if len(contents) == 1:
             # printing the score
+            print("\tSending Total Scores...")
             response.append("Here's the points:\n```")
             for u in self.point_data.keys():
                 response.append("{}: {}\n".format(u, self.point_data[u]))
@@ -48,10 +49,12 @@ class Point_Counter:
         elif len(contents) == 2:
             # either leaderboard, user score, or help
             if contents[1] == "h":
+                print("\tSending Help")
                 #help message
                 response = self.help();
             elif contens[1] == "l":
                 # leader board
+                print("\tSending Leaderboard")
                 leaders = []
                 counter = 1
                 for i in sorted (self.point_data):
@@ -63,6 +66,7 @@ class Point_Counter:
                         break
             elif contents[1] in self.point_data.keys():
                 # user score
+                print("\tSending single user score.")
                 response = "{} has {} points".format( \
                         contents[1], self.point_data[contents[1]])
             else:
@@ -70,6 +74,7 @@ class Point_Counter:
                 response = "The formatting of that doesn't feel quite right... try asking for help?"
         elif len(contnets) == 3:
             # update user score
+            print("\tUpdating user score")
             if contents[1] in self.point_data.keys():
                 # update points
                 val = 0
@@ -82,6 +87,7 @@ class Point_Counter:
                         contents[1], self.points_data[contents[1]])
             elif contents[1] == "r":
                 # remove user
+                print("\tRemoving user from record.")
                 if contents[2] in self.points_data.keys():
                     pass
                 else:
