@@ -1,13 +1,13 @@
-FILE_NAME = "data.dat"
-
 data = {}
 
 class Point_Counter:
 
-    point_data # Dict
+    point_data = {} # Dict
+    file_path = ""
 
     def __init__ (self, file_path):
-        with open(file_path) as f:
+        self.file_path = file_path
+        with open(self.file_path) as f:
             for line in f:
                 items = line.strip().split(":")
                 data[items[0]] = int(items[1])
@@ -24,7 +24,7 @@ class Point_Counter:
             data[name] = val + prev_val
         else:
             data[name] = val
-        with open(FILE_NAME, "w") as f:
+        with open(self.file_path, "w") as f:
             for name in data.keys():
                 f.write("{}:{}\n".format(name, str(data[name])))
 
