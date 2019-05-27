@@ -56,15 +56,17 @@ class Point_Counter:
             elif contents[1] == "l":
                 # leader board
                 print("\tSending Leaderboard")
+                response = "```"
                 leaders = []
                 counter = 1
-                for i in sorted (self.point_data):
+                for i in sorted(self.point_data, reverse=True):
                     leaders.append(i)
                 for u in leaders:
                     response += "{}. {}\n".format(counter, u)
                     counter += 1
                     if counter == 4:
                         break
+                response += "```"
             elif contents[1] in self.point_data.keys():
                 # user score
                 print("\tSending single user score.")
@@ -73,29 +75,27 @@ class Point_Counter:
             else:
                 # error?
                 response = "The formatting of that doesn't feel quite right... try asking for help?"
-        elif len(contnets) == 3:
-            # update user score
-            print("\tUpdating user score")
-            if contents[1] in self.point_data.keys():
+        elif len(contents) == 3:
+            if contents[1] == "r":
+                # remove user
+                print("\tRemoving user from record.")
+                if contents[2] in self.point_data:
+                    del self.point_data[contents[2]]
+                    response = "{} has been removed from the scoreboard.".format(\
+                            contents[2])
+                else:
+                    response = "It looks like that user wasn't being recorded. Try again?";
+            else:
                 # update points
+                print("\tUpdating user score")
                 val = 0
                 try:
                     val = int(contents[2])
                 except:
                     response = "I didn't get that number... Maybe try again?"
-                self.update(contents[1], contents[2])
+                self.update(contents[1], val)
                 response = "{} now has {} points!".format( \
-                        contents[1], self.points_data[contents[1]])
-            elif contents[1] == "r":
-                # remove user
-                print("\tRemoving user from record.")
-                if contents[2] in self.points_data.keys():
-                    pass
-                else:
-                    response = "It looks like that user wasn't being recorded. Try again?";
-            else:
-                # error
-                response = "The formatting of that doesn't feel quite right... try asking for help?"
+                        contents[1], self.point_data[contents[1]])
         else:
             # error
             response = "Uhhh,,, I don't think your message was formatted correctly?" + \

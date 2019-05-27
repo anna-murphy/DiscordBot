@@ -30,7 +30,25 @@ class TestPointCounter(unittest.TestCase):
         self.assertEquals(PC.point_data["Skitter"], 6)
 
     def test_handle (self):
-        pass
+        PC = p.Point_Counter(self.FILE_PATH)
+        # Test help
+        self.assertEquals(PC.handle("!p h"), PC.help())
+        # Test Leaders
+        l = PC.handle("!p l")
+        self.assertEquals(l, "```1. bob\n2. TattleTale\n3. Skitter\n```")
+        # Test User
+        self.assertEquals(PC.handle("!p Skitter"),\
+                "Skitter has 6 points")
+        # Test Update
+        self.assertEquals(PC.handle("!p Skitter 2"),\
+                "Skitter now has 8 points!")
+        self.assertEquals(PC.handle("!p Skitter -2"),\
+                "Skitter now has 6 points!")
+        # Test Remove
+        self.assertEquals(PC.handle("!p Imp 4"),\
+                "Imp now has 4 points!")
+        self.assertEquals(PC.handle("!p r Imp"), \
+                "Imp has been removed from the scoreboard.")
 
 if __name__ == "__main__":
     unittest.main()
