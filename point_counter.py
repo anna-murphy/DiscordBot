@@ -31,10 +31,11 @@ class Point_Counter:
 
     def help (self):
         return "I hear you're looking for help!\n" \
-                + "```!p tells you everyone's standing.\n" \
-                + "!p l tells you the top 3 people.\n" \
-                + "!p username gives the points for a specific user.\n" \
-                + "!p username X updates the score for that user.\n" \
+                + "```!p        - tells you everyone's standing.\n" \
+                + "!p l             - tells you the top 3 people.\n" \
+                + "!p username      - gives the points for a specific user.\n" \
+                + "!p username X    - updates the score for that user.\n" \
+                + "!p r username    - removes the user from the scoreboard."\
                 + "```"
 
     def handle (self, msg):
