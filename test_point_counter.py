@@ -22,7 +22,12 @@ class TestPointCounter(unittest.TestCase):
         self.assertTrue("bob: 12\n" in PC_string)
 
     def test_update(self):
-        pass
+        PC = p.Point_Counter(self.FILE_PATH)
+        self.assertEquals(PC.point_data["Skitter"], 6)
+        PC.update("Skitter", 2)
+        self.assertEquals(PC.point_data["Skitter"], 8)
+        PC.update("Skitter", -2)
+        self.assertEquals(PC.point_data["Skitter"], 6)
 
     def test_handle (self):
         pass

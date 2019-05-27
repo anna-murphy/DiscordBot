@@ -20,14 +20,14 @@ class Point_Counter:
         return string
 
     def update(self, name, val):
-        if name in data.keys():
-            prev_val = data[name]
-            data[name] = val + prev_val
+        if name in self.point_data.keys():
+            prev_val = self.point_data[name]
+            self.point_data[name] = val + prev_val
         else:
-            data[name] = val
+            self.point_data[name] = val
         with open(self.file_path, "w") as f:
-            for name in data.keys():
-                f.write("{}:{}\n".format(name, str(data[name])))
+            for name in self.point_data.keys():
+                f.write("{}:{}\n".format(name, str(self.point_data[name])))
 
     def help (self):
         return "I hear you're looking for help!\n" \
