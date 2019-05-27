@@ -12,7 +12,9 @@ class TestPointCounter(unittest.TestCase):
         self.assertEquals(len(PC.point_data), 4)
 
     def test_str(self):
-        pass
+        PC = p.Point_Counter(self.FILE_PATH)
+        self.assertEquals(PC.__str__(),
+                "```Skitter:6\nTattleTale:9\nGrue:2\nbob:12\n```")
 
     def test_update(self):
         pass

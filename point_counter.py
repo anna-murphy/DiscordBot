@@ -13,9 +13,10 @@ class Point_Counter:
                 self.point_data[items[0]] = int(items[1])
 
     def __str__ (self):
-        string = ""
-        for key in data.keys():
-            string.append("{}:{}".format(key, data[key]))
+        string = "```"
+        for key in self.point_data.keys():
+            string += "{0}:{1}\n".format(key, self.point_data[key])
+        string += "```"
         return string
 
     def update(self, name, val):
