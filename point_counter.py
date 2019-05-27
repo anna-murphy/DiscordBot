@@ -10,7 +10,7 @@ class Point_Counter:
         with open(self.file_path) as f:
             for line in f:
                 items = line.strip().split(":")
-                data[items[0]] = int(items[1])
+                self.point_data[items[0]] = int(items[1])
 
     def __str__ (self):
         string = ""
