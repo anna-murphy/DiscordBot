@@ -3,7 +3,7 @@ import unittest
 
 class TestPointCounter(unittest.TestCase):
 
-    FILE_PATH = "data.dat"
+    FILE_PATH = "test_data.dat"
 
     def test_constructor(self):
         PC = p.Point_Counter(self.FILE_PATH)
