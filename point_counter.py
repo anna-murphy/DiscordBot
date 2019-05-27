@@ -15,7 +15,7 @@ class Point_Counter:
     def __str__ (self):
         string = "```"
         for key in self.point_data.keys():
-            string += "{0}:{1}\n".format(key, self.point_data[key])
+            string += "{0}: {1}\n".format(key, self.point_data[key])
         string += "```"
         return string
 

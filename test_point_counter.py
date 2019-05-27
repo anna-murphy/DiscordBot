@@ -13,8 +13,13 @@ class TestPointCounter(unittest.TestCase):
 
     def test_str(self):
         PC = p.Point_Counter(self.FILE_PATH)
-        self.assertEquals(PC.__str__(),
-                "```Skitter:6\nTattleTale:9\nGrue:2\nbob:12\n```")
+        PC_string = PC.__str__()
+        self.assertTrue(PC_string.startswith("```"))
+        self.assertTrue(PC_string.endswith("\n```"))
+        self.assertTrue("Skitter: 6\n" in PC_string)
+        self.assertTrue("TattleTale: 9\n" in PC_string)
+        self.assertTrue("Grue: 2\n" in PC_string)
+        self.assertTrue("bob: 12\n" in PC_string)
 
     def test_update(self):
         pass
