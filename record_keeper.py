@@ -15,8 +15,37 @@ class Record_Keeper:
             self.by_author[record.author] = record
             self.by_date.append(record)
             self.by_points.append(record)
+        self.sort_collections()
+
+    def __str__ (self):
+        return "Record_Keeper"
+
+    def sort_collections (self):
         self.by_date.sort(key=lambda x: x.date)
         self.by_points.sort(key=lambda x: x.points)
+
+    def add_record (self, author,\
+            date, points, content):
+        filename = author + "_" + date + "_" + points + ".rec"
+        with open(filename, "w") as new_record:
+            new_record.writeline(author)
+            new_record.writeline(date)
+            new_record.writeline(points)
+            new_record.writeline(content)
+        new_record = Record(filename)
+        self.by_author[filename.author] = new_record
+        self.by_date.append(new_record)
+        self.by_points.append(new_record)
+        self.sort_collections()
+
+    def get_author_recent (self, author):
+        pass
+
+    def get_author_top (self, author):
+        pass
+
+    def get_top_all_time (self):
+        pass
 
 class Record:
 
