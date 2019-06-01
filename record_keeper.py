@@ -5,8 +5,18 @@
 
 class Record_Keeper:
 
-    def __init__ (self):
-        pass
+    by_author = {}
+    by_date = []
+    by_points = []
+
+    def __init__ (self, directory):
+        for record_file in directory:
+            record = Record(record_file)
+            self.by_author[record.author] = record
+            self.by_date.append(record)
+            self.by_points.append(record)
+        self.by_date.sort(key=lambda x: x.date)
+        self.by_points.sort(key=lambda x: x.points)
 
 class Record:
 
