@@ -14,7 +14,10 @@ class Record_Keeper:
     def __init__ (self, directory):
         for record_file in directory:
             record = Record(record_file)
-            self.by_author[record.author] = record
+            if (self.by_author[record.author] == None):
+                self.by_author[record.author] = [record]
+            else:
+                self.by_author[record.author].append(record)
             self.by_date.append(record)
             self.by_points.append(record)
         self.sort_collections()
@@ -43,13 +46,32 @@ class Record_Keeper:
         self.sort_collections()
 
     def get_author_recent (self, author):
-        pass
+        if self.by_author[author] == None:
+            return "No records found from " + author
+        else:
+            records = self.by_author[author]
+            records.sort(key=lambda x: x.date)
+            return records[0].__str__()
 
     def get_author_top (self, author):
-        pass
+        if self.by_author[author] == None:
+            return "No records found from " + author
+        else:
+            records = self.by_author[author]
+            records.sort(key=lambda x: x.points)
+            return records[0].__str__()
 
     def get_top_all_time (self):
-        pass
+        if len(self.by_points) == 0:
+            return "No records added yet."
+        else:
+            return self.by_points[0].__str__()
+
+    def get_most_recent (self):
+        if len(self.by_date) == 0:
+            return "No records added yet."
+        else:
+            return self.by_date[0].__str__()
 
 class Record:
 
