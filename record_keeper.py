@@ -5,6 +5,8 @@
 
 class Record_Keeper:
 
+    LOCATION = "records/"
+
     by_author = {}
     by_date = []
     by_points = []
@@ -18,7 +20,9 @@ class Record_Keeper:
         self.sort_collections()
 
     def __str__ (self):
-        return "Record_Keeper"
+        return "Records in /" + \
+                LOCATION + " holding " + \
+                str(len(self.by_date)) + " records."
 
     def sort_collections (self):
         self.by_date.sort(key=lambda x: x.date)
@@ -26,7 +30,7 @@ class Record_Keeper:
 
     def add_record (self, author,\
             date, points, content):
-        filename = author + "_" + date + "_" + points + ".rec"
+        filename = LOCATION + author + "_" + date + "_" + points + ".rec"
         with open(filename, "w") as new_record:
             new_record.writeline(author)
             new_record.writeline(date)
