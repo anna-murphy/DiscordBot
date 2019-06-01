@@ -3,6 +3,7 @@
 
 # Custom Data Files
 *.dat
+*.rec
 
 # Python Aux
 __pycache__/
