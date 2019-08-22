@@ -2,7 +2,7 @@
 import discord
 import point_counter as pc
 
-TOKEN = 'NTgyMTI2OTY4MjAwMjMyOTYw.XOpTbw.D9sEHy1InuRriK0nWCMnFhdvhYQ'
+TOKEN = "This isn't supposed to be shared."
 
 client = discord.Client()
 
